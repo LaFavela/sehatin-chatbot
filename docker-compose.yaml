@@ -1,0 +1,11 @@
+services:
+  chatbot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app
