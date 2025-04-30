@@ -9,6 +9,8 @@ services:
     tty: true
     volumes:
       - .:/app
+    networks:
+      - ollama-docker
 
   ollama:
     image: ollama/ollama:latest
@@ -19,3 +21,10 @@ services:
     environment:
       - MODEL_NAME=llama3.2:2b
     command: [ "run", "llama3.2:2b" ]
+    networks:
+      - ollama-docker
+
+
+networks:
+  ollama-docker:
+    external: false
