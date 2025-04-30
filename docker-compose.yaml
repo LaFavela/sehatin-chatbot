@@ -15,10 +15,7 @@ services:
     ports:
       - "11434:11434"
     volumes:
-      - ollama-data:/root/.ollama
+      - ~/.ollama:/root/.ollama
     environment:
       - MODEL_NAME=llama3.2:2b
-    command: [ "--model", "llama3.2:2b" ]
-
-volumes:
-  ollama-data:
+    command: [ "run", "llama3.2:2b" ]
