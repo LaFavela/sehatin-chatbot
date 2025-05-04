@@ -1,7 +1,14 @@
 from langchain_ollama.llms import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
+from dotenv import load_dotenv
+import os
 
-model = OllamaLLM(model="llama3.2:3b")
+load_dotenv()
+
+model = OllamaLLM(
+    model="llama3.2:3b",
+    base_url=os.getenv("OLLAMA_URL")
+)
 
 template = """
 Kamu adalah seorang asisten yang bertugas untuk menyapa user dengn nama.

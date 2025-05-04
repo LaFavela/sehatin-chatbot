@@ -5,8 +5,12 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 import shutil 
 import os
 from PyPDF2 import PdfReader
+from dotenv import load_dotenv
 
-embeddings = OllamaEmbeddings(model="nomic-embed-text")
+load_dotenv()
+
+embeddings = OllamaEmbeddings(model="nomic-embed-text",
+                              base_url=os.getenv("OLLAMA_URL"))
 
 try:
     # Read the PDF file
@@ -24,7 +28,10 @@ except Exception as e:
 # Clean up existing database if it exists
 db_location = "./general_data_db"
 if os.path.exists(db_location):
-    shutil.rmtree(db_location)
+    try:
+        shutil.rmtree(db_location)
+    except PermissionError:
+        print("Warning: Could not remove old database directory. It may be in use by another process.")
 
 # Initialize text splitter
 text_splitter = RecursiveCharacterTextSplitter(

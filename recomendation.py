@@ -2,9 +2,15 @@ from langchain_ollama.llms import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
 from calculate import calculate_bmi, calculate_bmr, calculate_tdee
 from vector import retriever
+from dotenv import load_dotenv
+import os
 
-# Initialize the model
-model = OllamaLLM(model="llama3.1:8b")
+load_dotenv()
+
+model = OllamaLLM(
+    model="llama3.2:3b",
+    base_url=os.getenv("OLLAMA_URL")
+)
 
 template = """
 Kamu adalah asisten chatbot yang cerdas dan ramah, bertugas membantu pengguna dalam hal informasi diet dan memberikan rekomendasi makanan yang tepat, akurat, dan disesuaikan dengan 'Data Pengguna'.

@@ -1,7 +1,15 @@
 from langchain_ollama.llms import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
 from general_data import retriever
-model = OllamaLLM(model="llama3.2:3b")
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+model = OllamaLLM(
+    model="llama3.2:3b",
+    base_url=os.getenv("OLLAMA_URL")
+)
 
 template = """
 Anda adalah seorang ahli kesehatan yang bertugas untuk memberikan informasi tentang kesehatan dan gizi berdasarkan informasi yang tersedia pada database.
