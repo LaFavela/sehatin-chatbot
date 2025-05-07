@@ -19,7 +19,7 @@ def chat():
         weight = data.get('weight', 70)
         height = data.get('height', 170)
         age = data.get('age', 25)
-        gender = data.get('gender', 'Pria')
+        gender = data.get('gender', 'Pria') 
 
         if not user_input:
             return jsonify({'error': 'Message is required'}), 400

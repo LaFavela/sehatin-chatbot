@@ -49,8 +49,8 @@ def ask_ai_consultation(name, activity, weight, height, age, gender, question):
     print()
     return response
     
-while True:
-    question = input("Masukkan pertanyaan: ")
-    if question == "q":
-        break   
-    ask_ai_consultation("Raihan", "Jarang", 43, 170, 25, "Pria", question)
+# while True:
+#     question = input("Masukkan pertanyaan: ")
+#     if question == "q":
+#         break   
+#     ask_ai_consultation("Raihan", "Jarang", 43, 170, 25, "Pria", question)

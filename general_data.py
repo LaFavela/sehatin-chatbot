@@ -75,11 +75,11 @@ retriever = vector_store.as_retriever(
 #     print(f"\nKonten: {doc.page_content}")
 #     print(f"Metadata: {doc.metadata}")
 
-all_documents = vector_store.get()
+# all_documents = vector_store.get()
 
-print("\nIsi dokumen yang tersimpan:")
-for i in range(len(all_documents['ids'])):
-    print(f"\nID: {all_documents['ids'][i]}")
-    print(f"Konten: {all_documents['documents'][i]}")
-    print(f"Metadata: {all_documents['metadatas'][i]}")
+# print("\nIsi dokumen yang tersimpan:")
+# for i in range(len(all_documents['ids'])):
+#     print(f"\nID: {all_documents['ids'][i]}")
+#     print(f"Konten: {all_documents['documents'][i]}")
+#     print(f"Metadata: {all_documents['metadatas'][i]}")
 

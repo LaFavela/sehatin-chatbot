@@ -1,6 +1,6 @@
 from langchain_ollama.llms import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
-from general_data import retriever
+from retriever import general_retriever
 from dotenv import load_dotenv
 import os
 
@@ -25,7 +25,7 @@ prompt = ChatPromptTemplate.from_template(template)
 chain = prompt | model
 
 def ask_ai_general(question):
-    information = retriever.invoke(question)
+    information = general_retriever.invoke(question)
     prompt_value = prompt.format_messages(
         question=question,
         information=information
