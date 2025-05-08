@@ -29,7 +29,7 @@ Pertanyaan pengguna: {input}
 prompt = ChatPromptTemplate.from_template(template)
 chain = prompt | model
 
-def ask_ai_consultation(name, activity, weight, height, age, gender, question):
+def ask_ai_consultation(name, activity, weight, height, age, gender, question, stream=False):
     bmi = calculate_bmi(weight, height)
     bmr = calculate_bmr(weight, height, age, gender)
     tdee = calculate_tdee(activity, bmr)
@@ -42,12 +42,14 @@ def ask_ai_consultation(name, activity, weight, height, age, gender, question):
         profile=profile
     )
     
-    response = ""
-    for chunk in model.stream(prompt_value):
-        print(chunk, end="", flush=True)
-        response += chunk
-    print()
-    return response
+    if stream:
+        for chunk in model.stream(prompt_value):
+            yield chunk
+    else:
+        response = ""
+        for chunk in model.stream(prompt_value):
+            response += chunk
+        return response
     
 # while True:
 #     question = input("Masukkan pertanyaan: ")

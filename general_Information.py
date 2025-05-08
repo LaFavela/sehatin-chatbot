@@ -24,18 +24,21 @@ cukup berikan jawaban yang singkat dan padat
 prompt = ChatPromptTemplate.from_template(template)
 chain = prompt | model
 
-def ask_ai_general(question):
+def ask_ai_general(question, stream=False):
     information = general_retriever.invoke(question)
     prompt_value = prompt.format_messages(
         question=question,
         information=information
     )
-    response = ""
-    for chunk in model.stream(prompt_value):
-        print(chunk, end="", flush=True)
-        response += chunk
-    print()
-    return response
+
+    if stream:
+        for chunk in model.stream(prompt_value):
+            yield chunk
+    else:
+        response = ""
+        for chunk in model.stream(prompt_value):
+            response += chunk
+        return response
 
 # while True:
 #     question = input("Masukkan pertanyaan: ")

@@ -80,7 +80,7 @@ Permintaan pengguna: {input}
 prompt = ChatPromptTemplate.from_template(template)
 chain = prompt | model
 
-def parse_food_recommendations(response, user_id):
+def parse_food_recommendations(response, user_id, stream=False):
     recommendations = []
     current_date = datetime.now().date()
     
@@ -145,24 +145,37 @@ def ask_ai_recomendation(name, activity, weight, height, age, gender, question):
         food_data=food_data
     )
     # Stream the response
-    response = ""
-    for chunk in model.stream(prompt_value):
-        print(chunk, end="", flush=True)
-        response += chunk
-    print()  # Add newline at the end
-    
-    # Parse and print JSON recommendations
-    recommendations = parse_food_recommendations(response, "id_user_1")
-    print("\nJSON Output:")
-    print(json.dumps(recommendations, indent=2, ensure_ascii=False))
-    
-    end_time = time.time()
-    elapsed_time = end_time - start_time
-    print(f"Response time: {elapsed_time:.2f} seconds")
-    return response, recommendations
+    if stream:
+        response = ""
+        for chunk in model.stream(prompt_value):
+            yield chunk
+            response += chunk
+        # Parse and print JSON recommendations
+        recommendations = parse_food_recommendations(response, user_id)
+        print("\nJSON Output:")
+        print(json.dumps(recommendations, indent=2, ensure_ascii=False))
 
-while True:
-    question = input("Masukkan pertanyaan: ")
-    if question == "q":
-        break
-    response, recommendations = ask_ai_recomendation("Raihan", "Normal", 77, 165, 25, "Pria", question)
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        print(f"Response time: {elapsed_time:.2f} seconds")
+    else:
+        response = ""
+        for chunk in model.stream(prompt_value):
+            response += chunk
+        # Parse and print JSON recommendations
+        recommendations = parse_food_recommendations(response, user_id)
+        print("\nJSON Output:")
+        print(json.dumps(recommendations, indent=2, ensure_ascii=False))
+
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        print(f"Response time: {elapsed_time:.2f} seconds")
+        return response, recommendations
+    
+
+
+# while True:
+#     question = input("Masukkan pertanyaan: ")
+#     if question == "q":
+#         break
+#     response, recommendations = ask_ai_recomendation("Raihan", "Normal", 77, 165, 25, "Pria", question)

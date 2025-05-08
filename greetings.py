@@ -24,17 +24,19 @@ Nama user: {name}
 prompt = ChatPromptTemplate.from_template(template)
 chain = prompt | model
 
-def generate_greeting(input, name):
+def generate_greeting(input, name, stream=False):
     prompt_value = prompt.format_messages(
         input=input,
         name=name
     )
-    response = ""
-    for chunk in model.stream(prompt_value):
-        print(chunk, end="", flush=True)   
-        response += chunk 
-    print()
-    return response
+    if stream:
+        for chunk in model.stream(prompt_value):
+            yield chunk
+    else:
+        response = ""
+        for chunk in model.stream(prompt_value):
+            response += chunk
+        return response
 
 # while True:
 #     user_input = input("Masukkan input: ")

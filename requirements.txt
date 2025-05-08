@@ -11,3 +11,5 @@ dotenv
 pydantic
 uvicorn
 fastapi
+grpcio
+grpcio-tools
