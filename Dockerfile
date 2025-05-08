@@ -6,6 +6,6 @@ COPY . /app
 
 RUN pip install -r requirements.txt
 
-EXPOSE 5000
+EXPOSE 50051
 
-CMD ["python", "api.py"]
+CMD ["python", "grpc_server.py"]
