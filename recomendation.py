@@ -1,4 +1,5 @@
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_ollama.llms import OllamaLLM
 from calculate import calculate_bmi, calculate_bmr, calculate_tdee
 from retriever import food_retriever
 import time
