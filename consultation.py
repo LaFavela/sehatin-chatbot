@@ -43,8 +43,10 @@ def ask_ai_consultation(name, activity, weight, height, age, gender, question, s
     )
     
     if stream:
+        response = ""
         for chunk in model.stream(prompt_value):
-            yield chunk
+            response += chunk
+            yield response
     else:
         response = ""
         for chunk in model.stream(prompt_value):

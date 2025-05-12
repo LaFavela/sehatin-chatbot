@@ -30,7 +30,9 @@ def generate_greeting(input, name, stream=False):
         name=name
     )
     if stream:
+        response = ""
         for chunk in model.stream(prompt_value):
+            response += chunk
             yield chunk
     else:
         response = ""

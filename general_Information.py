@@ -33,6 +33,7 @@ def ask_ai_general(question, stream=False):
 
     if stream:
         for chunk in model.stream(prompt_value):
+            response += chunk
             yield chunk
     else:
         response = ""

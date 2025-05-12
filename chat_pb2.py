@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nchat.proto\x12\x04\x63hat\"\x7f\n\x0b\x43hatRequest\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x14\n\x0c\x62mi_category\x18\x03 \x01(\t\x12\x0e\n\x06weight\x18\x04 \x01(\x02\x12\x0e\n\x06height\x18\x05 \x01(\x02\x12\x0b\n\x03\x61ge\x18\x06 \x01(\x05\x12\x0e\n\x06gender\x18\x07 \x01(\t\"1\n\tChatReply\x12\x16\n\x0eresponse_chunk\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t2A\n\x0b\x43hatService\x12\x32\n\nChatStream\x12\x11.chat.ChatRequest\x1a\x0f.chat.ChatReply0\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nchat.proto\x12\x04\x63hat\"\x1e\n\x0b\x43hatRequest\x12\x0f\n\x07message\x18\x01 \x01(\t\"1\n\tChatReply\x12\x16\n\x0eresponse_chunk\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t2A\n\x0b\x43hatService\x12\x32\n\nChatStream\x12\x11.chat.ChatRequest\x1a\x0f.chat.ChatReply0\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,9 +32,9 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'chat_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_CHATREQUEST']._serialized_start=20
-  _globals['_CHATREQUEST']._serialized_end=147
-  _globals['_CHATREPLY']._serialized_start=149
-  _globals['_CHATREPLY']._serialized_end=198
-  _globals['_CHATSERVICE']._serialized_start=200
-  _globals['_CHATSERVICE']._serialized_end=265
+  _globals['_CHATREQUEST']._serialized_end=50
+  _globals['_CHATREPLY']._serialized_start=52
+  _globals['_CHATREPLY']._serialized_end=101
+  _globals['_CHATSERVICE']._serialized_start=103
+  _globals['_CHATSERVICE']._serialized_end=168
 # @@protoc_insertion_point(module_scope)

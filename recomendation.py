@@ -126,7 +126,7 @@ def parse_food_recommendations(response, user_id, stream=False):
     
     return recommendations
 
-def ask_ai_recomendation(name, activity, weight, height, age, gender, question):
+def ask_ai_recomendation(name, activity, weight, height, age, gender, question, user_id, stream=False):
     bmi = calculate_bmi(weight, height)
     bmr = calculate_bmr(weight, height, age, gender)
     tdee = calculate_tdee(activity, bmr)
@@ -148,10 +148,11 @@ def ask_ai_recomendation(name, activity, weight, height, age, gender, question):
     if stream:
         response = ""
         for chunk in model.stream(prompt_value):
-            yield chunk
             response += chunk
+            yield response
         # Parse and print JSON recommendations
         recommendations = parse_food_recommendations(response, user_id)
+
         print("\nJSON Output:")
         print(json.dumps(recommendations, indent=2, ensure_ascii=False))
 

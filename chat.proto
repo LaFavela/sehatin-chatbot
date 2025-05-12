@@ -1,22 +1,16 @@
 syntax = "proto3";
 
-package chat;
+  package chat;
 
-service ChatService {
-  rpc ChatStream (ChatRequest) returns (stream ChatReply);
-}
+  service ChatService {
+    rpc ChatStream (ChatRequest) returns (stream ChatReply);
+  }
 
-message ChatRequest {
-  string message = 1;
-  string name = 2;
-  string bmi_category = 3;
-  float weight = 4;
-  float height = 5;
-  int32 age = 6;
-  string gender = 7;
-}
+  message ChatRequest {
+    string message = 1;
+  }
 
-message ChatReply {
-  string response_chunk = 1;
-  string type = 2;
-}
+  message ChatReply {
+    string response_chunk = 1;
+    string type = 2;
+  }
