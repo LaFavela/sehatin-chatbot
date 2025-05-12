@@ -22,19 +22,22 @@ _runtime_version.ValidateProtobufRuntimeVersion(
 _sym_db = _symbol_database.Default()
 
 
+from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nchat.proto\x12\x04\x63hat\"\x1e\n\x0b\x43hatRequest\x12\x0f\n\x07message\x18\x01 \x01(\t\"1\n\tChatReply\x12\x16\n\x0eresponse_chunk\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t2A\n\x0b\x43hatService\x12\x32\n\nChatStream\x12\x11.chat.ChatRequest\x1a\x0f.chat.ChatReply0\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nchat.proto\x12\x04\x63hat\x1a\x1cgoogle/api/annotations.proto\"\x1e\n\x0b\x43hatRequest\x12\x0f\n\x07message\x18\x01 \x01(\t\"1\n\tChatReply\x12\x16\n\x0eresponse_chunk\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t2g\n\x0b\x43hatService\x12X\n\nChatStream\x12\x11.chat.ChatRequest\x1a\x0f.chat.ChatReply\"$\x82\xd3\xe4\x93\x02\x1e\"\t/api/chat:\x01*Z\x0e\"\t/api/chat:\x01*0\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'chat_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_CHATREQUEST']._serialized_start=20
-  _globals['_CHATREQUEST']._serialized_end=50
-  _globals['_CHATREPLY']._serialized_start=52
-  _globals['_CHATREPLY']._serialized_end=101
-  _globals['_CHATSERVICE']._serialized_start=103
-  _globals['_CHATSERVICE']._serialized_end=168
+  _globals['_CHATSERVICE'].methods_by_name['ChatStream']._loaded_options = None
+  _globals['_CHATSERVICE'].methods_by_name['ChatStream']._serialized_options = b'\202\323\344\223\002\036\"\t/api/chat:\001*Z\016\"\t/api/chat:\001*'
+  _globals['_CHATREQUEST']._serialized_start=50
+  _globals['_CHATREQUEST']._serialized_end=80
+  _globals['_CHATREPLY']._serialized_start=82
+  _globals['_CHATREPLY']._serialized_end=131
+  _globals['_CHATSERVICE']._serialized_start=133
+  _globals['_CHATSERVICE']._serialized_end=236
 # @@protoc_insertion_point(module_scope)
