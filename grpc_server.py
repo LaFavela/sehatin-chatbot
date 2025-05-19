@@ -40,7 +40,7 @@ class ChatService(chat_pb2_grpc.ChatServiceServicer):
         # Fetch user details from user detail service
         try:
             resp = requests.get(
-                f"http://{USER_DETAIL_SERVICE_URL}/api/user",
+                f"http://{USER_DETAIL_SERVICE_URL}/api/users/detail",
                 params={"user_id": user_id},
                 timeout=3
             )
