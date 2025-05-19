@@ -8,6 +8,7 @@ import re
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import os
+import RabbitMQDispatcher
 
 load_dotenv()
 
@@ -79,6 +80,8 @@ Permintaan pengguna: {input}
 
 prompt = ChatPromptTemplate.from_template(template)
 chain = prompt | model
+
+dispatcher = RabbitMQDispatcher()
 
 def parse_food_recommendations(response, user_id, stream=False):
     recommendations = []
@@ -156,6 +159,11 @@ def ask_ai_recomendation(name, activity, weight, height, age, gender, question, 
         print("\nJSON Output:")
         print(json.dumps(recommendations, indent=2, ensure_ascii=False))
 
+        sent = dispatcher.send_message(recommendations)
+        if not sent:
+            # Handle error/log
+            print("Failed to dispatch recommendations to sehatin-be-message")
+
         end_time = time.time()
         elapsed_time = end_time - start_time
         print(f"Response time: {elapsed_time:.2f} seconds")
@@ -168,10 +176,17 @@ def ask_ai_recomendation(name, activity, weight, height, age, gender, question, 
         print("\nJSON Output:")
         print(json.dumps(recommendations, indent=2, ensure_ascii=False))
 
+        sent = dispatcher.send_message(recommendations)
+        if not sent:
+            # Handle error/log
+            print("Failed to dispatch recommendations to sehatin-be-message")
+
         end_time = time.time()
         elapsed_time = end_time - start_time
         print(f"Response time: {elapsed_time:.2f} seconds")
         return response, recommendations
+
+    dispatcher.close()
     
 
 

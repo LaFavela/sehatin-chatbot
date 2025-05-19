@@ -13,3 +13,4 @@ uvicorn
 fastapi
 grpcio
 grpcio-tools
+pika
