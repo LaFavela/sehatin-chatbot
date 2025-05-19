@@ -1,7 +1,14 @@
 from langchain_ollama.llms import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
+from dotenv import load_dotenv
+import os
 
-model = OllamaLLM(model="llama3.1:8b")
+load_dotenv()
+
+model = OllamaLLM(
+    model="llama3.2:3b",
+    base_url=os.getenv("OLLAMA_URL")
+)
 
 template = """
 Tugas kamu adalah mengklasifikasikan input dari user ke dalam salah satu kategori berikut:

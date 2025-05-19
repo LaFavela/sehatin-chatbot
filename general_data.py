@@ -5,8 +5,12 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 import shutil 
 import os
 from PyPDF2 import PdfReader
+from dotenv import load_dotenv
 
-embeddings = OllamaEmbeddings(model="nomic-embed-text")
+load_dotenv()
+
+embeddings = OllamaEmbeddings(model="nomic-embed-text",
+                              base_url=os.getenv("OLLAMA_URL"))
 
 try:
     # Read the PDF file
@@ -24,7 +28,10 @@ except Exception as e:
 # Clean up existing database if it exists
 db_location = "./general_data_db"
 if os.path.exists(db_location):
-    shutil.rmtree(db_location)
+    try:
+        shutil.rmtree(db_location)
+    except PermissionError:
+        print("Warning: Could not remove old database directory. It may be in use by another process.")
 
 # Initialize text splitter
 text_splitter = RecursiveCharacterTextSplitter(
@@ -68,11 +75,11 @@ retriever = vector_store.as_retriever(
 #     print(f"\nKonten: {doc.page_content}")
 #     print(f"Metadata: {doc.metadata}")
 
-all_documents = vector_store.get()
+# all_documents = vector_store.get()
 
-print("\nIsi dokumen yang tersimpan:")
-for i in range(len(all_documents['ids'])):
-    print(f"\nID: {all_documents['ids'][i]}")
-    print(f"Konten: {all_documents['documents'][i]}")
-    print(f"Metadata: {all_documents['metadatas'][i]}")
+# print("\nIsi dokumen yang tersimpan:")
+# for i in range(len(all_documents['ids'])):
+#     print(f"\nID: {all_documents['ids'][i]}")
+#     print(f"Konten: {all_documents['documents'][i]}")
+#     print(f"Metadata: {all_documents['metadatas'][i]}")
 

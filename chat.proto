@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+
+package chat;
+
+service ChatService {
+  rpc ChatStream (ChatRequest) returns (stream ChatReply) {
+    option (google.api.http) = {
+      post: "/api/chat"
+      body: "*"
+      additional_bindings {
+        post: "/api/chat"
+        body: "*"
+      }
+    };
+  }
+}
+
+message ChatRequest {
+  string message = 1;
+}
+
+message ChatReply {
+  string response_chunk = 1;
+  string type = 2;
+}

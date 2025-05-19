@@ -5,12 +5,16 @@ import pandas as pd
 import os
 import shutil  # untuk menghapus direktori
 import atexit  # untuk menangani cleanup saat program berakhir
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Baca data CSV
 df = pd.read_csv('Dataset/food_data.csv')
 
 # Inisialisasi embeddings
-embeddings = OllamaEmbeddings(model="nomic-embed-text")
+embeddings = OllamaEmbeddings(model="nomic-embed-text",
+                              base_url=os.getenv("OLLAMA_URL"))
 
 # Hapus direktori database lama jika ada
 db_location = "./chroma_langchain_db"
